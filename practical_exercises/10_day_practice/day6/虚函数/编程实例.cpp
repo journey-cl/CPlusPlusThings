@@ -1,7 +1,7 @@
 /*
-Ä³¹«Ë¾ÓĞ¾­Àí¡¢ÏúÊÛÔ±¡¢Ğ¡Ê±¹¤µÈ¶àÀàÈËÔ±¡£¾­Àí°´ÖÜ¼ÆËãĞ½½ğ£»ÏúÊÛÔ±Ã¿ÔÂµ×Ğ½800Ôª£¬
-È»ºó¼ÓÏúÊÛÌá³É£¬Ã¿ÏúÊÛ1¼ş²úÆ·ÌáÈ¡ÏúÊÛÀûÈóµÄ5%£»Ğ¡Ê±¹¤°´Ğ¡Ê±¼ÆËãĞ½½ğ¡£Ã¿ÀàÈËÔ±¶¼ÓĞĞÕÃûºÍÉí·İÖ¤ºÅµÈÊı¾İ¡£
-Îª¼ò»¯ÎÊÌâ£¬°Ñ¸÷ÀàÈËÔ±µÄ¹²ÓĞĞÅÏ¢³éÏó³É»ùÀàEmployee£¬ÆäËûÈËÔ±Ôò¼Ì³Ğ¸ÃÀàµÄ¹¦ÄÜ¡£ 
+æŸå…¬å¸æœ‰ç»ç†ã€é”€å”®å‘˜ã€å°æ—¶å·¥ç­‰å¤šç±»äººå‘˜ã€‚ç»ç†æŒ‰å‘¨è®¡ç®—è–ªé‡‘ï¼›é”€å”®å‘˜æ¯æœˆåº•è–ª800å…ƒï¼Œ
+ç„¶ååŠ é”€å”®ææˆï¼Œæ¯é”€å”®1ä»¶äº§å“æå–é”€å”®åˆ©æ¶¦çš„5%ï¼›å°æ—¶å·¥æŒ‰å°æ—¶è®¡ç®—è–ªé‡‘ã€‚æ¯ç±»äººå‘˜éƒ½æœ‰å§“åå’Œèº«ä»½è¯å·ç­‰æ•°æ®ã€‚
+ä¸ºç®€åŒ–é—®é¢˜ï¼ŒæŠŠå„ç±»äººå‘˜çš„å…±æœ‰ä¿¡æ¯æŠ½è±¡æˆåŸºç±»Employeeï¼Œå…¶ä»–äººå‘˜åˆ™ç»§æ‰¿è¯¥ç±»çš„åŠŸèƒ½ã€‚ 
 */
 #include <iostream>
 #include <string>
@@ -9,11 +9,11 @@ using namespace std;
 class Employee{
     public:
         Employee(string Name ,string id){ name=Name; Id=id; }
-        string getName(){ return name; }			//·µ»ØĞÕÃû
-        string getID(){ return Id; }			//·µ»ØÉí·İÖ¤ºÅ
-        float getSalary(){ return 0.0; }			//·µ»ØĞ½Ë®
-        void print(){		//Êä³öĞÕÃûºÍÉí·İÖ¤ºÅ
-            cout<<"ĞÕÃû: "<<name<<"\t\t ±àºÅ: "<<Id<<endl;
+        string getName(){ return name; }			//è¿”å›å§“å
+        string getID(){ return Id; }			//è¿”å›èº«ä»½è¯å·
+        virtual float getSalary(){ return 0.0; }			//è¿”å›è–ªæ°´
+        void print(){		//è¾“å‡ºå§“åå’Œèº«ä»½è¯å·
+            cout<<"å§“å: "<<name<<"\t\t ç¼–å·: "<<Id<<endl;
     }
     private:
         string name;
@@ -24,13 +24,13 @@ class Manager:public Employee{
         Manager(string Name,string id,int week):Employee(Name,id){
             WeeklySalary=week*1000;
         }
-        float getSalary(){ return WeeklySalary; }	//»ñÈ¡¾­ÀíµÄÖÜĞ½
-        void print(){			//´òÓ¡¾­ÀíĞÕÃû¡¢Éí·İÖ¤¡¢ÖÜĞ½
-            cout<<"¾­Àí£º"<<getName()<<"\t\t ±àºÅ: "<<getID()
-                <<"\t\t ×Ü¹¤×Ê: "<<getSalary()<<endl;
+        float getSalary(){ return WeeklySalary; }	//è·å–ç»ç†çš„å‘¨è–ª
+        void print(){			//æ‰“å°ç»ç†å§“åã€èº«ä»½è¯ã€å‘¨è–ª
+            cout<<"ç»ç†ï¼š"<<getName()<<"\t\t ç¼–å·: "<<getID()
+                <<"\t\t æ€»å·¥èµ„: "<<getSalary()<<endl;
             }
     private:
-        float WeeklySalary;					//ÖÜĞ½
+        float WeeklySalary;					//å‘¨è–ª
 };
 
 
@@ -43,8 +43,8 @@ class SaleWorker:public Employee{
             return workerMoney;
         }
         void print(){
-            cout<<"ÏúÊÛÔ±£º"<<getName()<<"\t\t ±àºÅ: "<<getID()
-                <<"\t\t ×Ü¹¤×Ê: "<<getSalary()<<endl;
+            cout<<"é”€å”®å‘˜ï¼š"<<getName()<<"\t\t ç¼–å·: "<<getID()
+                <<"\t\t æ€»å·¥èµ„: "<<getSalary()<<endl;
         }
     private:
         float baseMoney=800.0;
@@ -59,8 +59,8 @@ class HourWorker:public Employee{
             return TotalMoney;
         }
         void print(){
-            cout<<"Ğ¡Ê±¹¤£º"<<getName()<<"\t\t ±àºÅ: "<<getID()
-                <<"\t\t ×Ü¹¤×Ê: "<<getSalary()<<endl;
+            cout<<"å°æ—¶å·¥ï¼š"<<getName()<<"\t\t ç¼–å·: "<<getID()
+                <<"\t\t æ€»å·¥èµ„: "<<getSalary()<<endl;
         }
     private:
         float hourMoney=100.0;
@@ -69,23 +69,23 @@ class HourWorker:public Employee{
 
 
 int main(){
-    cout<<"ÇëÊäÈë¹¤×÷ÖÜ£º";
+    cout<<"è¯·è¾“å…¥å·¥ä½œå‘¨ï¼š";
     int week;
     cin>>week;
-    Manager m("Ğ¡Íõ","11111111",week);
+    Manager m("å°ç‹","11111111",week);
     m.print();
-    cout<<"ÇëÊäÈëÏúÊÛÀûÈó£º";
+    cout<<"è¯·è¾“å…¥é”€å”®åˆ©æ¶¦ï¼š";
     int profit;
     cin>>profit;
-    cout<<"ÇëÊäÈëÏúÊÛ¼şÊı£º";
+    cout<<"è¯·è¾“å…¥é”€å”®ä»¶æ•°ï¼š";
     int x;
     cin>>x;
-    SaleWorker s("Ğ¡Àî","222222",profit,x);
+    SaleWorker s("å°æ","222222",profit,x);
     s.print();
-    cout<<"ÇëÊäÈë¹¤×÷Ğ¡Ê±£º";
+    cout<<"è¯·è¾“å…¥å·¥ä½œå°æ—¶ï¼š";
     int hour;
     cin>>hour;
-    HourWorker h("Ğ¡ºÎ","333333",hour);
+    HourWorker h("å°ä½•","333333",hour);
     h.print();
     system("pause");
     return 0;
